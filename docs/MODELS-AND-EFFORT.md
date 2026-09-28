@@ -100,18 +100,24 @@ top-level effort between requests restarts the prompt cache; on models that supp
 (Fable 5.1, Opus 5.5, Opus 5 and a few others) a per-message effort change, in beta, keeps it.
 Do not carry settings over from an earlier model; the levels are calibrated per model.
 
-What the logs show, per response (all levels with at least 100 responses):
+What the logs show, per response (every recorded level with at least 100 responses;
+`unrecorded` rows and unpriced Codex models are left out):
 
 | Model | Effort | Responses | Output / response | Thinking share of output | Cost / response |
 |---|---|---|---|---|---|
 | Opus 5.5 | high | 2,321 | 912 | 41% | $0.129 |
 | Opus 5.5 | xhigh | 1,106 | 1,096 | 47% | $0.131 |
-| Fable 5.1 | medium | 497 | 1,151 | 25% | $0.414 |
+| Fable 5.1 | medium | 497 | 1,151 | 24% | $0.414 |
 | Fable 5.1 | high | 1,953 | 1,631 | 33% | $0.510 |
 | Fable 5.1 | xhigh | 3,192 | 1,693 | 44% | $0.412 |
 | Opus 5 | medium | 677 | 215 | 29% | $0.106 |
 | Opus 5 | high | 5,611 | 1,035 | 31% | $0.242 |
 | Opus 5 | xhigh | 14,425 | 952 | 27% | $0.216 |
+| Sonnet 5 | high | 289 | 641 | 35% | $0.033 |
+| Sonnet 5 | xhigh | 131 | 930 | 13% | $0.037 |
+| Fable 5 | high | 451 | 1,144 | 13% | $0.855 |
+| Fable 5 | xhigh | 2,904 | 1,099 | 11% | $0.515 |
+| Opus 4.8 | xhigh | 670 | 1,032 | not reported | $0.479 |
 
 | Codex model | Effort | Responses | Output / response | Reasoning share | Cost / response |
 |---|---|---|---|---|---|
@@ -120,12 +126,18 @@ What the logs show, per response (all levels with at least 100 responses):
 | gpt-6-astra | high | 2,204 | 589 | 22% | $0.236 |
 | gpt-6-astra | xhigh | 3,965 | 822 | 26% | $0.265 |
 | gpt-6-astra | max | 144 | 1,046 | 28% | $0.293 |
+| gpt-6-astra | ultra | 608 | 561 | 21% | $0.195 |
 
 How to read them:
 
 - **These higher-effort rows have more output.** On Codex, output per response rises steadily
   from low to max and the reasoning share with it. On Claude it mostly rises, not always:
   effort is not a budget.
+- **`ultra` is not a sixth rung.** The Codex selector lists Ultra above Max, but the effort
+  map's [sources](https://github.com/travisbreaks/effort-map/blob/main/docs/SOURCES.md) show
+  the gpt-6-astra model specification does not list it: it is an agent-configuration value and
+  a client product mode, not a level of the model. Its row does not continue the ladder (less
+  output per response than high), so do not read it as one step above max.
 - **Cost per response barely follows effort.** Most of a response's cost is re-reading context,
   not thinking, so Fable 5.1 at xhigh averaged less per response than at high. The total cost of
   a setting depends on the whole task, including retries and corrections. Higher effort could
