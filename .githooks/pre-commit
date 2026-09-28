@@ -1,0 +1,10 @@
+#!/bin/sh
+# Leak gate before every commit. `git commit --no-verify` skips it: never use that here.
+set -e
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is required (brew install gitleaks)" >&2
+  exit 1
+fi
+gitleaks protect --staged --no-banner --redact
+# Scan the Git index itself: exactly the bytes this commit will contain.
+npm run --silent check-public -- --staged

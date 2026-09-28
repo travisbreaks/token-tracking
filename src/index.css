@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #080808;
+  --color-panel: #111111;
+  --color-surface: #1a1a1a;
+  --color-gold: #cca43b;
+  --color-pink: #ff2a6d;
+  --color-cyan: #05d9e8;
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #7d8597; /* 5.4:1 on the background */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --font-display: 'Unbounded', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+  --font-body: 'EB Garamond', serif;
+}
+
+@layer base {
+  body {
+    @apply bg-void text-text-primary antialiased;
+    font-family: var(--font-code);
+    font-size: 14px;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(8, 8, 8, 0.48);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(51, 204, 85, 0.07);
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(51, 204, 85, 0.02), inset 0 0 12px rgba(51, 204, 85, 0.01);
+  }
+}

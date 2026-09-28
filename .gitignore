@@ -1,0 +1,27 @@
+# Private data: never committed. See README "Privacy contract".
+data/private/
+*.local.*
+subscriptions.json
+
+# Hidden top-level directories hold local tool and session state; only these are shared.
+/.*/
+!/.github/
+!/.githooks/
+
+# Local review exchange with other assistants; never committed.
+/astra/
+
+# Only the published file under public/data/ is tracked
+public/data/*
+!public/data/usage.json
+
+# Build and tooling
+node_modules
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+.vite/
+.DS_Store
+.env
+.env.*

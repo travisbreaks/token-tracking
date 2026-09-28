@@ -1,0 +1,31 @@
+{
+  "projectRoots": [
+    "~/projects/",
+    "~/work/monorepo/"
+  ],
+  "aliases": {
+    "Old_Project_Name": "new-project-name"
+  },
+  "ignoreSegments": [
+    "node_modules",
+    "dist",
+    "scripts"
+  ],
+  "categories": {
+    "general": "Other",
+    "new-project-name": "Own sites & products",
+    "client-portal": "Client work",
+    "journal": "Personal"
+  },
+  "publicCategoryMerge": {
+    "Personal": "Other"
+  },
+  "denylistExtra": [
+    "your-username",
+    "Client Company Name",
+    "a-person's-name"
+  ],
+  "denylistAllow": {},
+  "genericNames": [],
+  "publicNames": []
+}
